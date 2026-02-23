@@ -1,10 +1,10 @@
 package com.loribel.publications.bo;
 
-public abstract class PublicationLinkedIn extends PublicationBO {
+public abstract class PublicationLinkedInBO extends PublicationBO {
 
     private String content;
 
-    public PublicationLinkedIn() {
+    public PublicationLinkedInBO() {
     }
 
     public String getContent() {

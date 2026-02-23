@@ -1,10 +1,10 @@
 package com.loribel.publications.bo;
 
-public class PublicationLinkedInPdf extends PublicationLinkedIn {
+public class PublicationLinkedInPdfBO extends PublicationLinkedInBO {
 
     private String pdfUri;
 
-    public PublicationLinkedInPdf() {
+    public PublicationLinkedInPdfBO() {
     }
 
     public String getPdfUri() {

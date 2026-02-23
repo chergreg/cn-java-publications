@@ -14,7 +14,7 @@ public class DemoRepositoryjava {
 				Paths.get("src/main/resources/repository/publication"));
 
 		// Création manuelle d’un exemple
-		PublicationYoutubeVideo yt = new PublicationYoutubeVideo();
+		PublicationYoutubeVideoBO yt = new PublicationYoutubeVideoBO();
 		yt.setTitle("Ma première vidéo");
 		yt.setStatus("DRAFT");
 		yt.setDatePub(new Date());

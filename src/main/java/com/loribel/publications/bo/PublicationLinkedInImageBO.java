@@ -1,10 +1,10 @@
 package com.loribel.publications.bo;
 
-public class PublicationLinkedInImage extends PublicationLinkedIn {
+public class PublicationLinkedInImageBO extends PublicationLinkedInBO {
 
     private String imageUri;
 
-    public PublicationLinkedInImage() {
+    public PublicationLinkedInImageBO() {
     	super();
     }
 

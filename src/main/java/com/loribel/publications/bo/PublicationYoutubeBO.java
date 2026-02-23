@@ -1,12 +1,12 @@
 package com.loribel.publications.bo;
 
-public abstract class PublicationYoutube extends PublicationBO {
+public abstract class PublicationYoutubeBO extends PublicationBO {
 
     private String videoUri;
     private String description;
     private int durationSecond;
 
-    public PublicationYoutube() {
+    public PublicationYoutubeBO() {
     }
 
     public String getVideoUri() {

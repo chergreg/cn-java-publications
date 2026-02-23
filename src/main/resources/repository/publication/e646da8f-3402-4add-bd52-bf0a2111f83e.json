@@ -1,10 +1,10 @@
 {
   "type" : "YOUTUBE_VIDEO",
-  "uid" : "2ea8b0cf-8912-470e-bedd-fa7746801df6",
+  "uid" : "e646da8f-3402-4add-bd52-bf0a2111f83e",
   "title" : "Ma première vidéo",
   "status" : "DRAFT",
-  "datePub" : 1771250431932,
+  "datePub" : 1771855514451,
   "videoUri" : "https://youtube.com/watch?v=xxxx",
   "description" : "Une description",
-  "durationSec" : 777
+  "durationSecond" : 777
 }

@@ -1,10 +1,10 @@
 package com.loribel.publications.bo;
 
-public class PublicationLinkedInVideo extends PublicationLinkedIn {
+public class PublicationLinkedInVideoBO extends PublicationLinkedInBO {
 
     private String videoUri;
 
-    public PublicationLinkedInVideo() {
+    public PublicationLinkedInVideoBO() {
     }
 
     public String getVideoUri() {
