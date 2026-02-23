@@ -1,0 +1,20 @@
+abstract PublicationBO
+- UUID uid
+- String title
+- String status
+- Date datePub
+
+abstract PublicationYoutubeBO extends PublicationBO
+- int duration
+- List<String> tags
+- String publishedDate; // YYYY-MM-DD
+- String publishedTime; // HH:mm:ss
+- String channelId
+- String channelTitle
+- String defaultLanguage
+- String definition
+- String description
+- String thumbnailsUrl
+- String youtubeId
+
+PublicationYoutubeVideoBO extends PublicationYoutubeBO
