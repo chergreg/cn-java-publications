@@ -5,6 +5,7 @@ public class PublicationLinkedInImage extends PublicationLinkedIn {
     private String imageUri;
 
     public PublicationLinkedInImage() {
+    	super();
     }
 
     public String getImageUri() {

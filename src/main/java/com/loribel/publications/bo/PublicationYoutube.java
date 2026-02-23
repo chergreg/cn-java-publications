@@ -1,10 +1,10 @@
 package com.loribel.publications.bo;
 
-public abstract class PublicationYoutube extends Publication {
+public abstract class PublicationYoutube extends PublicationBO {
 
     private String videoUri;
     private String description;
-    private int durationSec;
+    private int durationSecond;
 
     public PublicationYoutube() {
     }
@@ -25,11 +25,13 @@ public abstract class PublicationYoutube extends Publication {
         this.description = description;
     }
 
-    public int getDurationSec() {
-        return durationSec;
-    }
+	public int getDurationSecond() {
+		return durationSecond;
+	}
 
-    public void setDurationSec(int durationSec) {
-        this.durationSec = durationSec;
-    }
+	public void setDurationSecond(int durationSecond) {
+		this.durationSecond = durationSecond;
+	}
+
+    
 }

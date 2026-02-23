@@ -16,14 +16,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = PublicationLinkedInPdf.class, name = "LINKEDIN_PDF"),
         @JsonSubTypes.Type(value = PublicationLinkedInVideo.class, name = "LINKEDIN_VIDEO")
 })
-public abstract class Publication {
+public abstract class PublicationBO {
 
     private UUID uid;
     private String title;
     private String status;
     private Date datePub;
 
-    public Publication() {
+    public PublicationBO() {
     }
 
     public UUID getUid() {

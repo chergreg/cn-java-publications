@@ -1,6 +1,6 @@
 package com.loribel.publications.bo;
 
-public abstract class PublicationLinkedIn extends Publication {
+public abstract class PublicationLinkedIn extends PublicationBO {
 
     private String content;
 

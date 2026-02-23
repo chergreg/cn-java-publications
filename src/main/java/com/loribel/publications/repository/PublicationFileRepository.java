@@ -2,7 +2,7 @@ package com.loribel.publications.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.loribel.publications.bo.Publication;
+import com.loribel.publications.bo.PublicationBO;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -20,7 +20,7 @@ public class PublicationFileRepository {
 		this.mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	}
 
-	public void save(Publication publication) throws IOException {
+	public void save(PublicationBO publication) throws IOException {
 		if (publication.getUid() == null) {
 			publication.setUid(UUID.randomUUID());
 		}
@@ -30,18 +30,18 @@ public class PublicationFileRepository {
 		mapper.writeValue(file.toFile(), publication);
 	}
 
-	public Publication load(UUID uid) throws IOException {
+	public PublicationBO load(UUID uid) throws IOException {
 		Path file = folder.resolve(uid.toString() + ".json");
-		return mapper.readValue(file.toFile(), Publication.class);
+		return mapper.readValue(file.toFile(), PublicationBO.class);
 	}
 
-	public List<Publication> findAll() throws IOException {
+	public List<PublicationBO> findAll() throws IOException {
 		Files.createDirectories(folder);
 
-		List<Publication> result = new ArrayList<>();
+		List<PublicationBO> result = new ArrayList<>();
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder, "*.json")) {
 			for (Path file : stream) {
-				Publication pub = mapper.readValue(file.toFile(), Publication.class);
+				PublicationBO pub = mapper.readValue(file.toFile(), PublicationBO.class);
 				result.add(pub);
 			}
 		}
