@@ -1,0 +1,18 @@
+{
+  "type" : "YOUTUBE_VIDEO",
+  "uid" : "cad00ff2-fee8-41ff-8ac3-d5988adf1285",
+  "title" : "NEW",
+  "status" : "PUBLISHED",
+  "datePub" : null,
+  "channelId" : "UC710970",
+  "channelTitle" : "Ma chaîne 55",
+  "defaultLanguage" : "fr",
+  "definition" : "hd",
+  "description" : "Description random 3321",
+  "duration" : 491,
+  "publishedDate" : "2026-02-21",
+  "publishedTime" : "04:51:04",
+  "tags" : [ "java", "javafx", "poo" ],
+  "thumbnailsUrl" : "https://example.com/thumb.jpg",
+  "youtubeId" : "4xq6bVbS-Pw"
+}

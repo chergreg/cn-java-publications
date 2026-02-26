@@ -1,0 +1,18 @@
+{
+  "type" : "YOUTUBE_VIDEO",
+  "uid" : "aaeb25b0-c052-4063-a6c6-7ff993d9835d",
+  "title" : "Video #3766",
+  "status" : "DRAFT",
+  "datePub" : null,
+  "channelId" : "UC353040",
+  "channelTitle" : "Ma chaîne 1",
+  "defaultLanguage" : "fr",
+  "definition" : "sd",
+  "description" : "Description random 2122",
+  "duration" : 881,
+  "publishedDate" : "2026-02-05",
+  "publishedTime" : "11:03:41",
+  "tags" : [ "java", "javafx", "poo" ],
+  "thumbnailsUrl" : "https://example.com/thumb.jpg",
+  "youtubeId" : "4xq6bVbS-Pw"
+}

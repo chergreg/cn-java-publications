@@ -1,0 +1,18 @@
+{
+  "type" : "YOUTUBE_VIDEO",
+  "uid" : "cf08a4ad-bae5-4f7c-9a19-7c46b204a7e5",
+  "title" : "Video #9660",
+  "status" : "DRAFT",
+  "datePub" : null,
+  "channelId" : "UC124628",
+  "channelTitle" : "Ma chaîne 86",
+  "defaultLanguage" : "fr",
+  "definition" : "hd",
+  "description" : "Description random 9648",
+  "duration" : 1510,
+  "publishedDate" : "2026-02-09",
+  "publishedTime" : "12:01:03",
+  "tags" : [ "java", "javafx", "poo" ],
+  "thumbnailsUrl" : "https://example.com/thumb.jpg",
+  "youtubeId" : "4xq6bVbS-Pw"
+}

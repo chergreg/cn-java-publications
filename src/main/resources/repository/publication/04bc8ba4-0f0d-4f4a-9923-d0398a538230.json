@@ -1,0 +1,18 @@
+{
+  "type" : "YOUTUBE_VIDEO",
+  "uid" : "04bc8ba4-0f0d-4f4a-9923-d0398a538230",
+  "title" : "Video #5055",
+  "status" : "PUBLISHED",
+  "datePub" : null,
+  "channelId" : "UC994630",
+  "channelTitle" : "Ma chaîne 30",
+  "defaultLanguage" : "fr",
+  "definition" : "sd",
+  "description" : "Description random 2254",
+  "duration" : 788,
+  "publishedDate" : "2026-02-08",
+  "publishedTime" : "16:36:54",
+  "tags" : [ "java", "javafx", "poo" ],
+  "thumbnailsUrl" : "https://example.com/thumb.jpg",
+  "youtubeId" : "4xq6bVbS-Pw"
+}

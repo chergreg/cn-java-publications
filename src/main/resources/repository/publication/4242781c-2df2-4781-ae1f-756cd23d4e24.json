@@ -1,0 +1,18 @@
+{
+  "type" : "YOUTUBE_VIDEO",
+  "uid" : "4242781c-2df2-4781-ae1f-756cd23d4e24",
+  "title" : "BBB",
+  "status" : "DRAFT",
+  "datePub" : null,
+  "channelId" : "UC180527",
+  "channelTitle" : "Ma chaîne 66",
+  "defaultLanguage" : "fr",
+  "definition" : "hd",
+  "description" : "Description random BB",
+  "duration" : 682,
+  "publishedDate" : "2026-02-19",
+  "publishedTime" : "14:16:19",
+  "tags" : [ "java", "javafx", "poo" ],
+  "thumbnailsUrl" : "https://example.com/thumb.jpg",
+  "youtubeId" : "4xq6bVbS-Pw"
+}
