@@ -1,7 +1,6 @@
 package com.loribel.publications.ui;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +10,9 @@ import com.loribel.publications.bo.PublicationYoutubeVideoBO;
 import com.loribel.publications.repository.PublicationFileRepository;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -29,48 +31,19 @@ public class MainApp extends Application {
     private PublicationFileRepository repo;
 
     @Override
-    public void start(Stage primaryStage) {
-    	
-        // IMPORTANT: un owner de Dialog doit avoir une Scene (sinon NPE en JavaFX 21)
-    	if (primaryStage.getScene() == null) {
-    	    primaryStage.setScene(new javafx.scene.Scene(new javafx.scene.layout.Pane(), 1, 1));
-    	}
-    	primaryStage.show();
-    	primaryStage.hide();
+    public void start(Stage stage) throws Exception {
 
-            
-        // Repo local (dossier où seront stockés les fichiers)
-        repo = PublicationFileRepository.getInstance();
-     
-        PublicationYoutubeVideoBO bo = chooseOrCreate(primaryStage);
-        if (bo == null) {
-            primaryStage.close();
-            return;
-        }
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "/com/loribel/publications/ui/PublicationList.fxml"
+                )
+        );
 
-        System.out.println("=== BO AVANT ===");
-        PublicationYoutubePrinter.print(bo);
+        Parent root = loader.load();
 
-        // Ecran d’édition (OK/Cancel)
-        PublicationYoutubeEditorDialog editor = new PublicationYoutubeEditorDialog(primaryStage, bo);
-        boolean ok = editor.showAndWait();
-
-        // Sur OK : Save dans le repo
-        if (ok) {
-            try {
-                repo.save(bo);
-                System.out.println("✅ SAVED in repo (uid=" + bo.getUid() + ")");
-            } catch (IOException e) {
-                showError("Erreur sauvegarde", e);
-            }
-        } else {
-            System.out.println("❎ Cancel -> pas de save");
-        }
-
-        System.out.println("=== BO APRES (ok=" + ok + ") ===");
-        PublicationYoutubePrinter.print(bo);
-
-        primaryStage.close();
+        stage.setTitle("Publications");
+        stage.setScene(new Scene(root, 800, 600));
+        stage.show();
     }
 
     private PublicationYoutubeVideoBO chooseOrCreate(Window owner) {

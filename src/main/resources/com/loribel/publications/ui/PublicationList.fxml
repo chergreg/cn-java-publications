@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.loribel.publications.ui.PublicationListController">
+
+    <center>
+
+        <TableView fx:id="tablePublications">
+
+            <columns>
+
+                <TableColumn fx:id="colUid" text="UID"/>
+                <TableColumn fx:id="colType" text="Type"/>
+                <TableColumn fx:id="colTitle" text="Title"/>
+                <TableColumn fx:id="colStatus" text="Status"/>
+                <TableColumn fx:id="colDatePub" text="Date"/>
+
+            </columns>
+
+        </TableView>
+
+    </center>
+
+    <bottom>
+
+        <HBox spacing="10" alignment="CENTER">
+
+            <Button text="New" onAction="#onNew"/>
+            <Button text="Edit" onAction="#onEdit"/>
+            <Button text="Delete" onAction="#onDelete"/>
+            <Button text="View" onAction="#onView"/>
+
+        </HBox>
+
+    </bottom>
+
+</BorderPane>

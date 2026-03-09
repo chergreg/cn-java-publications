@@ -1,8 +1,16 @@
+packages :
+com.loribel.publication
+- com.loribel.publication.bo
+- com.loribel.publication.repository
+- com.loribel.publication.ui
+
+
 abstract PublicationBO
 - UUID uid
 - String title
 - String status
 - Date datePub
+- abstract String getType() ;
 
 
 Hiérarchie 
