@@ -4,4 +4,9 @@ public class PublicationYoutubeShortBO extends PublicationYoutubeBO {
 
     public PublicationYoutubeShortBO() {
     }
+    
+	@Override
+	public String getType() {
+		return "YoutubeShort";
+	}
 }

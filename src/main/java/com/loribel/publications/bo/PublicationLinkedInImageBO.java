@@ -15,4 +15,9 @@ public class PublicationLinkedInImageBO extends PublicationLinkedInBO {
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
     }
+
+	@Override
+	public String getType() {
+		return "LinkedInImage";
+	}
 }

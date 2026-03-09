@@ -14,4 +14,9 @@ public class PublicationLinkedInVideoBO extends PublicationLinkedInBO {
     public void setVideoUri(String videoUri) {
         this.videoUri = videoUri;
     }
+    
+	@Override
+	public String getType() {
+		return "LinkedInVideo";
+	}
 }

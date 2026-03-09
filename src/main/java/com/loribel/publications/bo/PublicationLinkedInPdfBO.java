@@ -14,4 +14,9 @@ public class PublicationLinkedInPdfBO extends PublicationLinkedInBO {
     public void setPdfUri(String pdfUri) {
         this.pdfUri = pdfUri;
     }
+    
+	@Override
+	public String getType() {
+		return "LinkedInPdf";
+	}
 }

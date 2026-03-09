@@ -4,6 +4,20 @@ abstract PublicationBO
 - String status
 - Date datePub
 
+
+Hiérarchie 
+PublicationBO
+├── PublicationLinkedInBO
+│   ├── PublicationLinkedInImageBO
+│   ├── PublicationLinkedInPdfBO
+│   ├── PublicationLinkedInTextBO
+│   └── PublicationLinkedInVideoBO
+└── PublicationYoutubeBO
+    ├── PublicationYoutubeShortBO
+    └── PublicationYoutubeVideoBO
+
+
+
 abstract PublicationYoutubeBO extends PublicationBO
 - int duration
 - List<String> tags

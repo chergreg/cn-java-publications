@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = PublicationYoutubeVideoBO.class, name = "YOUTUBE_VIDEO"),
-        @JsonSubTypes.Type(value = PublicationYoutubeShortBO.class, name = "YOUTUBE_SHORT"),
-        @JsonSubTypes.Type(value = PublicationLinkedInTextBO.class, name = "LINKEDIN_TEXT"),
-        @JsonSubTypes.Type(value = PublicationLinkedInImageBO.class, name = "LINKEDIN_IMAGE"),
-        @JsonSubTypes.Type(value = PublicationLinkedInPdfBO.class, name = "LINKEDIN_PDF"),
-        @JsonSubTypes.Type(value = PublicationLinkedInVideoBO.class, name = "LINKEDIN_VIDEO")
+        @JsonSubTypes.Type(value = PublicationYoutubeVideoBO.class, name = "YoutubeVideo"),
+        @JsonSubTypes.Type(value = PublicationYoutubeShortBO.class, name = "nYoutubeShort"),
+        @JsonSubTypes.Type(value = PublicationLinkedInTextBO.class, name = "LinkedInText"),
+        @JsonSubTypes.Type(value = PublicationLinkedInImageBO.class, name = "LinkedInImage"),
+        @JsonSubTypes.Type(value = PublicationLinkedInPdfBO.class, name = "LinkedInPdf"),
+        @JsonSubTypes.Type(value = PublicationLinkedInVideoBO.class, name = "LinkedInVideo")
 })
 public abstract class PublicationBO {
 
@@ -57,4 +57,7 @@ public abstract class PublicationBO {
     public void setDatePub(Date datePub) {
         this.datePub = datePub;
     }
+    
+    public abstract String getType() ;
+    
 }
