@@ -18,9 +18,8 @@ public class DemoRepository {
 	private static final DateTimeFormatter TIME_HH_MM_SS = DateTimeFormatter.ofPattern("HH:mm:ss");
 
 	public static void main(String[] args) throws Exception {
-		PublicationFileRepository repo = new PublicationFileRepository(
-				Paths.get("src/main/resources/repository/publication"));
-
+		PublicationFileRepository repo = PublicationFileRepository.getInstance();
+		
 		// Création manuelle d’un exemple
 		PublicationYoutubeVideoBO yt = randomYoutubeVideo();
 		repo.save(yt);

@@ -11,11 +11,23 @@ import java.util.List;
 import java.util.UUID;
 
 public class PublicationFileRepository {
+	
+	private static PublicationFileRepository instance;
+	private static String PATH = "src/main/resources/repository/publication";
 
 	private final Path folder;
 	private final ObjectMapper mapper;
 
-	public PublicationFileRepository(Path folder) {
+	public static PublicationFileRepository getInstance() {
+		
+	    if (instance == null) {	    	
+	        instance = new PublicationFileRepository(Paths.get(PATH));
+	    }
+
+	    return instance;
+	}
+	
+	private PublicationFileRepository(Path folder) {
 		this.folder = folder;
 		this.mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	}

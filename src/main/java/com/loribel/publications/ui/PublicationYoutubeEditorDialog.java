@@ -56,6 +56,10 @@ public class PublicationYoutubeEditorDialog {
         loadToForm(); // working -> UI
     }
 
+    /**
+     * 
+     * @return true si bouton OK 
+     */
     public boolean showAndWait() {
         stage.showAndWait();
         return ok;

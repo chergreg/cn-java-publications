@@ -40,8 +40,7 @@ public class MainApp extends Application {
 
             
         // Repo local (dossier où seront stockés les fichiers)
-        repo = new PublicationFileRepository(
-				Paths.get("src/main/resources/repository/publication"));
+        repo = PublicationFileRepository.getInstance();
      
         PublicationYoutubeVideoBO bo = chooseOrCreate(primaryStage);
         if (bo == null) {
