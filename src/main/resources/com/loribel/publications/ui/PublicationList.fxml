@@ -14,7 +14,7 @@
             <columns>
 
                 <TableColumn fx:id="colUid" text="UID"/>
-                <TableColumn fx:id="colType" text="Type"/>
+                <TableColumn fx:id="colTypeInfo" text="TypeInfo"/>
                 <TableColumn fx:id="colTitle" text="Title"/>
                 <TableColumn fx:id="colStatus" text="Status"/>
                 <TableColumn fx:id="colDatePub" text="Date"/>

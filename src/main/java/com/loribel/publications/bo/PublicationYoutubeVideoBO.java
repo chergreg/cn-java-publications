@@ -6,7 +6,7 @@ public class PublicationYoutubeVideoBO extends PublicationYoutubeBO {
     }
     
     @Override
-	public String getType() {
+	public String getTypeInfo() {
 		return "YoutubeVideo";
 	}
 }

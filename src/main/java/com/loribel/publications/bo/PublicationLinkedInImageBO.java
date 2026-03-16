@@ -17,7 +17,7 @@ public class PublicationLinkedInImageBO extends PublicationLinkedInBO {
     }
 
 	@Override
-	public String getType() {
+	public String getTypeInfo() {
 		return "LinkedInImage";
 	}
 }

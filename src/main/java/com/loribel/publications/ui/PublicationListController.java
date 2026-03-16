@@ -22,7 +22,7 @@ public class PublicationListController {
 	private TableColumn<PublicationBO, UUID> colUid;
 
 	@FXML
-	private TableColumn<PublicationBO, String> colType;
+	private TableColumn<PublicationBO, String> colTypeInfo;
 
 	@FXML
 	private TableColumn<PublicationBO, String> colTitle;
@@ -38,13 +38,15 @@ public class PublicationListController {
 
 		colUid.setCellValueFactory(d -> new SimpleObjectProperty<>(d.getValue().getUid()));
 
-		colType.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getType()));
+		colTypeInfo.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getTypeInfo()));
 
 		colTitle.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getTitle()));
 
 		colStatus.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getStatus()));
 
 		colDatePub.setCellValueFactory(d -> new SimpleObjectProperty<>(d.getValue().getDatePub()));
+		
+		loadData();
 
 	}
 

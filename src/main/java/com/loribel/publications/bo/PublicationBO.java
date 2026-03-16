@@ -3,7 +3,7 @@ package com.loribel.publications.bo;
 import java.util.Date;
 import java.util.UUID;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -58,6 +58,7 @@ public abstract class PublicationBO {
         this.datePub = datePub;
     }
     
-    public abstract String getType() ;
+    @JsonIgnore
+    public abstract String getTypeInfo() ;
     
 }

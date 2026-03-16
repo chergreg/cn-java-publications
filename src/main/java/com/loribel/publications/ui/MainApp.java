@@ -28,7 +28,7 @@ import javafx.util.StringConverter;
 
 public class MainApp extends Application {
 
-    private PublicationFileRepository repo;
+	private PublicationFileRepository repo = PublicationFileRepository.getInstance();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -40,6 +40,9 @@ public class MainApp extends Application {
         );
 
         Parent root = loader.load();
+        
+        PublicationListController controller = loader.getController();
+    
 
         stage.setTitle("Publications");
         stage.setScene(new Scene(root, 800, 600));
