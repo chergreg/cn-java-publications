@@ -9,6 +9,8 @@ import com.loribel.publications.bo.PublicationLinkedInTextBO;
 import com.loribel.publications.bo.PublicationYoutubeShortBO;
 import com.loribel.publications.bo.PublicationYoutubeVideoBO;
 import com.loribel.publications.repository.PublicationFileRepository;
+import com.loribel.publications.ui.dialogs.PublicationLinkedInTextEditorDialog;
+import com.loribel.publications.ui.dialogs.PublicationYoutubeEditorDialog;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
