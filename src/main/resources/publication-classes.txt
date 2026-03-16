@@ -1,8 +1,8 @@
 packages :
 com.loribel.publication
-- com.loribel.publication.bo
-- com.loribel.publication.repository
-- com.loribel.publication.ui
+- com.loribel.publications.bo
+- com.loribel.publications.repository
+- com.loribel.publications.ui
 
 
 abstract PublicationBO
@@ -10,7 +10,7 @@ abstract PublicationBO
 - String title
 - String status
 - Date datePub
-- abstract String getType() ;
+- abstract String getTypeInfo() ;
 
 
 Hiérarchie 
@@ -40,3 +40,10 @@ abstract PublicationYoutubeBO extends PublicationBO
 - String youtubeId
 
 PublicationYoutubeVideoBO extends PublicationYoutubeBO
+
+
+abstract PublicationLinkedInBO
+- String content
+
+PublicationLinkedInTextBO extends PublicationLinkedInBO
+

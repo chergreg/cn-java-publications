@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.UUID;
 
 import com.loribel.publications.bo.PublicationBO;
+import com.loribel.publications.bo.PublicationLinkedInTextBO;
+import com.loribel.publications.bo.PublicationYoutubeVideoBO;
 import com.loribel.publications.repository.PublicationFileRepository;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -45,7 +48,7 @@ public class PublicationListController {
 		colStatus.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getStatus()));
 
 		colDatePub.setCellValueFactory(d -> new SimpleObjectProperty<>(d.getValue().getDatePub()));
-		
+
 		loadData();
 
 	}
@@ -69,36 +72,65 @@ public class PublicationListController {
 
 	@FXML
 	private void onEdit() {
+
+		PublicationBO p = getSelected();
+		if (p == null)
+			return;
+
+		try {
+			boolean ok = false;
+
+			if (p instanceof PublicationYoutubeVideoBO yt) {
+				ok = new PublicationYoutubeEditorDialog(tablePublications.getScene().getWindow(), yt).showAndWait();
+
+			} else if (p instanceof PublicationLinkedInTextBO liText) {
+				ok = new PublicationLinkedInTextEditorDialog(tablePublications.getScene().getWindow(), liText)
+						.showAndWait();
+
+			} else {
+				Alert a = new Alert(Alert.AlertType.WARNING);
+				a.setTitle("Edition");
+				a.setHeaderText("Type non supporté");
+				a.setContentText("Pas encore d'éditeur pour : " + p.getTypeInfo());
+				a.showAndWait();
+				return;
+			}
+
+			if (!ok)
+				return;
+
+			PublicationFileRepository.getInstance().save(p);
+			loadData();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	private void onDelete() {
 
-	    PublicationBO p = getSelected();
+		PublicationBO p = getSelected();
 
-	    if (p == null) return;
+		if (p == null)
+			return;
 
-	    try {
+		try {
 
-	        PublicationFileRepository
-	                .getInstance()
-	                .delete(p.getUid());
+			PublicationFileRepository.getInstance().delete(p.getUid());
 
-	        loadData();
+			loadData();
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	private void onView() {
 	}
 
-	
 	private PublicationBO getSelected() {
-	    return tablePublications
-	            .getSelectionModel()
-	            .getSelectedItem();
+		return tablePublications.getSelectionModel().getSelectedItem();
 	}
 }

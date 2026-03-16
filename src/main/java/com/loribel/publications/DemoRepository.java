@@ -1,12 +1,12 @@
 package com.loribel.publications;
 
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.loribel.publications.bo.PublicationBO;
+import com.loribel.publications.bo.PublicationLinkedInTextBO;
 import com.loribel.publications.bo.PublicationYoutubeVideoBO;
 import com.loribel.publications.repository.PublicationFileRepository;
 
@@ -19,10 +19,14 @@ public class DemoRepository {
 
 	public static void main(String[] args) throws Exception {
 		PublicationFileRepository repo = PublicationFileRepository.getInstance();
-		
+
 		// Création manuelle d’un exemple
 		PublicationYoutubeVideoBO yt = randomYoutubeVideo();
 		repo.save(yt);
+
+		// Création manuelle d’un exemple
+		PublicationLinkedInTextBO pubLn = randomLinkedInTextBO();
+		repo.save(pubLn);
 
 		// Relire tout
 		List<PublicationBO> pubs = repo.findAll();
@@ -33,33 +37,46 @@ public class DemoRepository {
 
 	public static PublicationYoutubeVideoBO randomYoutubeVideo() {
 
-		PublicationYoutubeVideoBO yt = new PublicationYoutubeVideoBO();
+		PublicationYoutubeVideoBO pub = new PublicationYoutubeVideoBO();
 
-		yt.setTitle("Video " + randomString(8));
-		yt.setStatus(randomStatus());
-		yt.setDatePub(new java.util.Date());
+		pub.setTitle("Video " + randomString(8));
+		pub.setStatus(randomStatus());
+		pub.setDatePub(new java.util.Date());
 
-		yt.setDuration(ThreadLocalRandom.current().nextInt(30, 1800));
-		yt.setTags(List.of("java", "youtube", randomString(5)));
+		pub.setDuration(ThreadLocalRandom.current().nextInt(30, 1800));
+		pub.setTags(List.of("java", "youtube", randomString(5)));
 
 		LocalDateTime ldt = LocalDateTime.now().minusDays(ThreadLocalRandom.current().nextInt(0, 365))
 				.withHour(ThreadLocalRandom.current().nextInt(0, 24))
 				.withMinute(ThreadLocalRandom.current().nextInt(0, 60))
 				.withSecond(ThreadLocalRandom.current().nextInt(0, 60)).withNano(0);
 
-		yt.setPublishedDate(ldt.toLocalDate().format(ISO_DATE)); // YYYY-MM-DD
-		yt.setPublishedTime(ldt.toLocalTime().format(TIME_HH_MM_SS)); // HH:mm:ss
+		pub.setPublishedDate(ldt.toLocalDate().format(ISO_DATE)); // YYYY-MM-DD
+		pub.setPublishedTime(ldt.toLocalTime().format(TIME_HH_MM_SS)); // HH:mm:ss
 
-		yt.setChannelId("UC" + randomString(20));
-		yt.setChannelTitle("Channel_" + randomString(6));
-		yt.setDefaultLanguage("fr");
-		yt.setDefinition(ThreadLocalRandom.current().nextBoolean() ? "hd" : "sd");
-		yt.setDescription("Description " + randomString(20));
+		pub.setChannelId("UC" + randomString(20));
+		pub.setChannelTitle("Channel_" + randomString(6));
+		pub.setDefaultLanguage("fr");
+		pub.setDefinition(ThreadLocalRandom.current().nextBoolean() ? "hd" : "sd");
+		pub.setDescription("Description " + randomString(20));
 		String youtubeId = randomString(11);
-		yt.setYoutubeId(youtubeId);
-		yt.setThumbnailsUrl("https://img.youtube.com/vi/" + youtubeId + "/0.jpg");
+		pub.setYoutubeId(youtubeId);
+		pub.setThumbnailsUrl("https://img.youtube.com/vi/" + youtubeId + "/0.jpg");
 
-		return yt;
+		return pub;
+	}
+
+	public static PublicationLinkedInTextBO randomLinkedInTextBO() {
+
+		PublicationLinkedInTextBO pub = new PublicationLinkedInTextBO();
+
+		pub.setTitle("LinkedIn " + randomString(8));
+		pub.setStatus(randomStatus());
+		pub.setDatePub(new java.util.Date());
+
+		pub.setContent(randomString(50));
+
+		return pub;
 	}
 
 	private static String randomString(int length) {
