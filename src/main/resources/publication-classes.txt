@@ -4,6 +4,7 @@
 packages :
 com.loribel.publication 
 - com.loribel.publications.bo 
+- com.loribel.publications.interfaces 
 - com.loribel.publications.repository
 - com.loribel.publications.ui
 - com.loribel.publications.ui.dialogs
@@ -12,6 +13,10 @@ com.loribel.publication
 Détails des packages :
 com.loribel.publication
 - Package racine de mon projet
+- Classe de lancement de mon app
+
+com.loribel.publications.interfaces 
+- Interfaces du projets
 
 com.loribel.publications.bo
 - Hiérarchie des mes entités (BusinessObject)
@@ -36,16 +41,17 @@ abstract PublicationBO
 - abstract String getTypeInfo()
 
 
-Hiérarchie PublicationBO
-PublicationBO
-├── PublicationLinkedInBO
-│   ├── PublicationLinkedInImageBO
-│   ├── PublicationLinkedInPdfBO
-│   ├── PublicationLinkedInTextBO
-│   └── PublicationLinkedInVideoBO
-└── PublicationYoutubeBO
-    ├── PublicationYoutubeShortBO
-    └── PublicationYoutubeVideoBO
+Hiérarchie Publication
+Publication (interface)
+└── PublicationBO (abstract)
+    ├── PublicationLinkedInBO (abstract)
+    │   ├── PublicationLinkedInImageBO
+    │   ├── PublicationLinkedInPdfBO
+    │   ├── PublicationLinkedInTextBO
+    │   └── PublicationLinkedInVideoBO
+    └── PublicationYoutubeBO (abstract)
+        ├── PublicationYoutubeShortBO
+        └── PublicationYoutubeVideoBO
 
 =======================================
 

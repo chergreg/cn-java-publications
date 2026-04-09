@@ -6,63 +6,58 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.loribel.publications.ui.dialogs.BaseEditorDialog;
-
-import javafx.stage.Window;
+import com.loribel.publications.interfaces.Publication;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = PublicationYoutubeVideoBO.class, name = "YoutubeVideo"),
-        @JsonSubTypes.Type(value = PublicationYoutubeShortBO.class, name = "nYoutubeShort"),
-        @JsonSubTypes.Type(value = PublicationLinkedInTextBO.class, name = "LinkedInText"),
-        @JsonSubTypes.Type(value = PublicationLinkedInImageBO.class, name = "LinkedInImage"),
-        @JsonSubTypes.Type(value = PublicationLinkedInPdfBO.class, name = "LinkedInPdf"),
-        @JsonSubTypes.Type(value = PublicationLinkedInVideoBO.class, name = "LinkedInVideo")
-})
-public abstract class PublicationBO {
+@JsonSubTypes({ @JsonSubTypes.Type(value = PublicationYoutubeVideoBO.class, name = "YoutubeVideo"),
+		@JsonSubTypes.Type(value = PublicationYoutubeShortBO.class, name = "nYoutubeShort"),
+		@JsonSubTypes.Type(value = PublicationLinkedInTextBO.class, name = "LinkedInText"),
+		@JsonSubTypes.Type(value = PublicationLinkedInImageBO.class, name = "LinkedInImage"),
+		@JsonSubTypes.Type(value = PublicationLinkedInPdfBO.class, name = "LinkedInPdf"),
+		@JsonSubTypes.Type(value = PublicationLinkedInVideoBO.class, name = "LinkedInVideo") })
+public abstract class PublicationBO implements Publication {
 
-    private UUID uid;
-    private String title;
-    private String status;
-    private Date datePub;
+	private Date datePub;
+	private String status;
+	private String title;
+	private UUID uid;
 
-    public PublicationBO() {
-    }
+	public PublicationBO() {
+	}
 
-    public UUID getUid() {
-        return uid;
-    }
+	public Date getDatePub() {
+		return datePub;
+	}
 
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	@JsonIgnore
+	public abstract String getTypeInfo();
 
-    public String getStatus() {
-        return status;
-    }
+	public UUID getUid() {
+		return uid;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setDatePub(Date datePub) {
+		this.datePub = datePub;
+	}
 
-    public Date getDatePub() {
-        return datePub;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public void setDatePub(Date datePub) {
-        this.datePub = datePub;
-    }
-    
-    @JsonIgnore
-    public abstract String getTypeInfo() ;
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    
+	public void setUid(UUID uid) {
+		this.uid = uid;
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.loribel.publications.ui;
+package com.loribel.publications;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -8,6 +8,8 @@ import java.util.Optional;
 import com.loribel.publications.bo.PublicationBO;
 import com.loribel.publications.bo.PublicationYoutubeVideoBO;
 import com.loribel.publications.repository.PublicationFileRepository;
+import com.loribel.publications.ui.PublicationListController;
+import com.loribel.publications.ui.PublicationYoutubeVideoFactory;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
