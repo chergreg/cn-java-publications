@@ -6,6 +6,9 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.loribel.publications.ui.dialogs.BaseEditorDialog;
+
+import javafx.stage.Window;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -60,5 +63,6 @@ public abstract class PublicationBO {
     
     @JsonIgnore
     public abstract String getTypeInfo() ;
+
     
 }

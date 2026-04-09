@@ -1,19 +1,42 @@
+=======================================
+=== PACKAGES
+=======================================
 packages :
-com.loribel.publication
-- com.loribel.publications.bo
+com.loribel.publication 
+- com.loribel.publications.bo 
 - com.loribel.publications.repository
 - com.loribel.publications.ui
+- com.loribel.publications.ui.dialogs
 
 
+Détails des packages :
+com.loribel.publication
+- Package racine de mon projet
+
+com.loribel.publications.bo
+- Hiérarchie des mes entités (BusinessObject)
+
+com.loribel.publications.repository
+- Repository json
+
+com.loribel.publications.ui
+- Gestion des interfaces graphiques Jfx
+
+com.loribel.publications.ui.dialogs
+- Dialog pour les publications
+
+=======================================
+=== ENTITÉ / Business Object
+=======================================
 abstract PublicationBO
 - UUID uid
 - String title
 - String status
 - Date datePub
-- abstract String getTypeInfo() ;
+- abstract String getTypeInfo()
 
 
-Hiérarchie 
+Hiérarchie PublicationBO
 PublicationBO
 ├── PublicationLinkedInBO
 │   ├── PublicationLinkedInImageBO
@@ -24,7 +47,7 @@ PublicationBO
     ├── PublicationYoutubeShortBO
     └── PublicationYoutubeVideoBO
 
-
+=======================================
 
 abstract PublicationYoutubeBO extends PublicationBO
 - int duration
@@ -41,9 +64,9 @@ abstract PublicationYoutubeBO extends PublicationBO
 
 PublicationYoutubeVideoBO extends PublicationYoutubeBO
 
-
 abstract PublicationLinkedInBO
 - String content
 
 PublicationLinkedInTextBO extends PublicationLinkedInBO
 
+=======================================

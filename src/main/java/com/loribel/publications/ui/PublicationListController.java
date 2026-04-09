@@ -9,6 +9,7 @@ import com.loribel.publications.bo.PublicationLinkedInTextBO;
 import com.loribel.publications.bo.PublicationYoutubeShortBO;
 import com.loribel.publications.bo.PublicationYoutubeVideoBO;
 import com.loribel.publications.repository.PublicationFileRepository;
+import com.loribel.publications.ui.dialogs.BaseEditorDialog;
 import com.loribel.publications.ui.dialogs.PublicationLinkedInTextEditorDialog;
 import com.loribel.publications.ui.dialogs.PublicationYoutubeEditorDialog;
 
@@ -146,6 +147,12 @@ public class PublicationListController {
 
 		Window owner = tablePublications.getScene().getWindow();
 
+		
+		// p = mon BO
+		//BaseEditorDialog<PublicationBO> dialog = p.newDialog(owner);
+		//return dialog.showAndWait();
+		
+		
 		if (p instanceof PublicationYoutubeVideoBO yt) {
 			return new PublicationYoutubeEditorDialog(owner, yt).showAndWait();
 		}
