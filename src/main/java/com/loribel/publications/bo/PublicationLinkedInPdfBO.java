@@ -1,5 +1,7 @@
 package com.loribel.publications.bo;
 
+import com.loribel.publications.interfaces.SocialNetwork;
+
 public class PublicationLinkedInPdfBO extends PublicationLinkedInBO {
 
     private String pdfUri;
@@ -19,4 +21,5 @@ public class PublicationLinkedInPdfBO extends PublicationLinkedInBO {
 	public String getTypeInfo() {
 		return "LinkedInPdf";
 	}
+
 }

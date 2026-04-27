@@ -7,6 +7,8 @@ public interface Publication {
 
 	Date getDatePub();
 
+	SocialNetwork getSocialNetwork();
+
 	String getStatus();
 
 	String getTitle();
@@ -16,6 +18,8 @@ public interface Publication {
 	UUID getUid();
 
 	void setDatePub(Date datePub);
+
+	void setSocialNetwork(SocialNetwork socialNetwork);
 
 	void setStatus(String status);
 

@@ -1,47 +1,136 @@
-=======================================
-=== PACKAGES
-=======================================
-packages :
-com.loribel.publication 
-- com.loribel.publications.bo 
-- com.loribel.publications.interfaces 
-- com.loribel.publications.repository
-- com.loribel.publications.ui
-- com.loribel.publications.ui.dialogs
+# Publications
 
+Application Java de gestion de publications multi-réseaux sociaux, avec une interface JavaFX et une architecture orientée **MVC + Actions UI**.
 
-Détails des packages :
-com.loribel.publication
-- Package racine de mon projet
-- Classe de lancement de mon app
+## Objectif
 
-com.loribel.publications.interfaces 
-- Interfaces du projets
+Le projet permet de gérer différents types de publications pour plusieurs réseaux sociaux, en particulier :
 
-com.loribel.publications.bo
-- Hiérarchie des mes entités (BusinessObject)
+- **LinkedIn**
+- **YouTube**
 
-com.loribel.publications.repository
-- Repository json
+L’application vise à fournir :
+- une structure métier claire
+- une séparation propre entre données, UI et logique de contrôle
+- une base évolutive pour plusieurs vues : **Month**, **Week**, **Day**, **List**
 
-com.loribel.publications.ui
-- Gestion des interfaces graphiques Jfx
+---
 
-com.loribel.publications.ui.dialogs
-- Dialog pour les publications
+# Architecture générale
 
-=======================================
-=== ENTITÉ / Business Object
-=======================================
-abstract PublicationBO
-- UUID uid
-- String title
-- String status
-- Date datePub
-- abstract String getTypeInfo()
+Le projet repose sur deux axes principaux :
 
+- une architecture **métier orientée objets**
+- une architecture **UI en MVC**, complétée par une interface d’actions : `PublicationActions`
 
-Hiérarchie Publication
+## Principes
+
+### 1. Hiérarchie métier
+Les publications sont modélisées par une hiérarchie de classes `BO` dérivées d’un tronc commun `PublicationBO`.
+
+### 2. UI en MVC
+Chaque écran UI suit une organisation :
+
+- **Model** : état de la vue
+- **View** : interface graphique JavaFX
+- **Controller** : coordination entre vue, modèle et repository
+
+### 3. Actions UI déléguées
+Les actions utilisateur transversales ne sont pas implémentées directement dans les contrôleurs de vue.
+
+Elles sont regroupées dans l’interface :
+
+- `PublicationActions`
+
+Le contrôleur reçoit une implémentation de cette interface par **délégation**.
+
+Cela permet :
+- une implémentation **Demo** pour tests rapides
+- une implémentation **Prod** intégrée au reste du projet
+
+---
+
+# Packages
+
+## `com.loribel.publication`
+Package racine du projet.
+
+Responsabilités :
+- point d’entrée de l’application
+- classe de lancement
+
+## `com.loribel.publications.bo`
+Contient la hiérarchie des entités métier (**Business Objects**).
+
+Responsabilités :
+- structure des publications
+- spécialisation par réseau social
+- spécialisation par type de contenu
+
+## `com.loribel.publications.interfaces`
+Contient les interfaces du projet.
+
+Responsabilités :
+- contrats métier
+- contrats repository
+- contrat d’actions UI
+
+Exemples :
+- `Publication`
+- `PublicationActions`
+- `PublicationMonthRepository`
+
+## `com.loribel.publications.repository`
+Contient la couche d’accès aux données.
+
+Responsabilités :
+- persistance JSON
+- lecture / écriture des publications
+- implémentations concrètes des repositories
+
+## `com.loribel.publications.ui`
+Contient les composants JavaFX et la logique de présentation.
+
+Responsabilités :
+- vues
+- modèles de vue
+- contrôleurs de vue
+- composants graphiques
+
+## `com.loribel.publications.ui.dialogs`
+Contient les fenêtres de dialogue liées aux publications.
+
+Responsabilités :
+- création / édition / consultation
+- dialogues spécifiques UI
+
+---
+
+# Modèle métier
+
+## Tronc commun
+
+### `Publication` (interface)
+Contrat commun exposé au reste du projet.
+
+### `PublicationBO` (abstract)
+Classe de base commune à toutes les publications.
+
+Attributs principaux :
+- `UUID uid`
+- `String title`
+- `String status`
+- `Date datePub`
+
+Méthodes principales :
+- `String getTypeInfo()`
+- `SocialNetwork getSocialNetwork()`
+
+---
+
+# Hiérarchie des publications
+
+```text
 Publication (interface)
 └── PublicationBO (abstract)
     ├── PublicationLinkedInBO (abstract)
@@ -52,27 +141,234 @@ Publication (interface)
     └── PublicationYoutubeBO (abstract)
         ├── PublicationYoutubeShortBO
         └── PublicationYoutubeVideoBO
+````
 
-=======================================
+---
 
-abstract PublicationYoutubeBO extends PublicationBO
-- int duration
-- List<String> tags
-- String publishedDate; // YYYY-MM-DD
-- String publishedTime; // HH:mm:ss
-- String channelId
-- String channelTitle
-- String defaultLanguage
-- String definition
-- String description
-- String thumbnailsUrl
-- String youtubeId
+## Branche YouTube
 
-PublicationYoutubeVideoBO extends PublicationYoutubeBO
+### `PublicationYoutubeBO`
 
-abstract PublicationLinkedInBO
-- String content
+Classe abstraite spécialisée pour les publications YouTube.
 
-PublicationLinkedInTextBO extends PublicationLinkedInBO
+Attributs :
 
-=======================================
+* `int duration`
+* `List<String> tags`
+* `String publishedDate` (`YYYY-MM-DD`)
+* `String publishedTime` (`HH:mm:ss`)
+* `String channelId`
+* `String channelTitle`
+* `String defaultLanguage`
+* `String definition`
+* `String description`
+* `String thumbnailsUrl`
+* `String youtubeId`
+
+Classe concrète actuelle :
+
+* `PublicationYoutubeVideoBO`
+
+## Branche LinkedIn
+
+### `PublicationLinkedInBO`
+
+Classe abstraite spécialisée pour les publications LinkedIn.
+
+Attribut principal :
+
+* `String content`
+
+Classe concrète actuelle :
+
+* `PublicationLinkedInTextBO`
+
+Autres spécialisations prévues / supportées :
+
+* image
+* PDF
+* vidéo
+
+---
+
+# Architecture UI
+
+## Vue générale
+
+L’interface graphique repose sur une architecture **MVC par écran**.
+
+Exemple avec la vue mensuelle :
+
+* `PublicationMonthModel`
+* `PublicationMonthView`
+* `PublicationMonthController`
+
+## Rôle des composants
+
+### Model
+
+Le `Model` contient l’état nécessaire à l’affichage.
+
+Exemples :
+
+* année courante
+* mois courant
+* liste des publications affichées
+
+Le modèle ne contient pas de logique JavaFX.
+
+### View
+
+La `View` construit et affiche l’interface JavaFX.
+
+Responsabilités :
+
+* afficher le calendrier
+* afficher les publications
+* gérer les composants visuels
+* capter les événements utilisateur
+* déléguer les actions
+
+La vue ne contient pas la logique métier.
+
+### Controller
+
+Le `Controller` orchestre la vue.
+
+Responsabilités :
+
+* charger les données depuis le repository
+* mettre à jour le modèle
+* rafraîchir la vue
+* gérer les actions propres à la vue courante
+
+Exemples pour la vue mensuelle :
+
+* `init()`
+* `nextMonth()`
+* `previousMonth()`
+
+---
+
+# PublicationActions
+
+## Rôle
+
+`PublicationActions` centralise les actions utilisateur transversales à plusieurs vues.
+
+Exemples :
+
+* voir une publication
+* éditer une publication
+* supprimer une publication
+* créer une publication
+* changer de vue
+
+Cette interface permet de découpler :
+
+* la logique spécifique d’une vue
+* les actions fonctionnelles globales de l’application
+
+## Principe de délégation
+
+Le contrôleur de vue **n’implémente pas** directement `PublicationActions`.
+
+À la place :
+
+* il reçoit une implémentation de `PublicationActions`
+* il la transmet à la vue
+* la vue invoque cette interface selon les interactions utilisateur
+
+Ce choix améliore :
+
+* la modularité
+* la testabilité
+* la séparation des responsabilités
+
+## Implémentations prévues
+
+### `PublicationActionsDemo`
+
+Implémentation légère pour tests rapides.
+
+Comportement :
+
+* affiche simplement une boîte de dialogue pour chaque action
+
+Usage :
+
+* prototypage UI
+* démonstration
+* validation rapide des interactions
+
+### `PublicationActionsProd`
+
+Implémentation réelle branchée sur le reste du projet.
+
+Comportement attendu :
+
+* ouverture de dialogues
+* navigation réelle entre vues
+* actions effectives sur les publications
+
+---
+
+# Exemple de flux MVC + Actions
+
+## Navigation dans le mois
+
+1. L’utilisateur clique sur **Mois suivant**
+2. La vue appelle le contrôleur
+3. Le contrôleur met à jour le modèle
+4. Le contrôleur recharge les publications
+5. La vue est rafraîchie
+
+## Action sur une publication
+
+1. L’utilisateur fait un clic droit sur une publication
+2. La vue affiche un menu contextuel
+3. La vue appelle `PublicationActions`
+4. L’implémentation `Demo` ou `Prod` exécute l’action
+
+## Ajout d’une publication
+
+1. L’utilisateur clique sur `+` dans un jour ou sur **Nouvelle publication...**
+2. La vue appelle `actions.createPublication(date)`
+3. L’implémentation active décide du comportement
+
+---
+
+# État actuel du module UI Month
+
+La vue mensuelle permet déjà :
+
+* l’affichage d’un calendrier mensuel
+* la navigation mois précédent / mois suivant
+* l’affichage des publications par jour
+* l’affichage d’un maximum de 3 publications par case
+* l’indication du nombre de publications supplémentaires
+* l’affichage d’un indicateur visuel du réseau social
+* un tooltip si le titre est tronqué
+* un menu contextuel sur chaque publication :
+
+  * éditer
+  * voir
+  * supprimer
+* un bouton `+` dans chaque jour
+* un bouton **Nouvelle publication...** en haut de l’interface
+
+---
+
+# Orientation du projet
+
+Le projet est conçu pour évoluer vers :
+
+* plusieurs vues de calendrier
+* une meilleure gestion des dialogues
+* une séparation plus forte entre UI de démonstration et UI de production
+* une intégration progressive avec le reste du domaine métier
+
+```
+
+Je peux aussi te faire une **version README encore plus professionnelle**, avec sections `Installation`, `Structure du projet`, `Choix d’architecture`, et `Roadmap`.
+```

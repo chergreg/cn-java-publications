@@ -3,21 +3,33 @@ package com.loribel.publications.ui;
 import java.util.List;
 
 import com.loribel.publications.interfaces.Publication;
+import com.loribel.publications.interfaces.PublicationActions;
 import com.loribel.publications.interfaces.PublicationMonthRepository;
 
 public class PublicationMonthController {
 
+	private final PublicationActions actions;
 	private final PublicationMonthModel model;
 	private final PublicationMonthRepository repository;
 	private final PublicationMonthView view;
 
 	public PublicationMonthController(PublicationMonthRepository repository, PublicationMonthModel model,
-			PublicationMonthView view) {
+			PublicationMonthView view, PublicationActions actions) {
 		this.repository = repository;
 		this.model = model;
 		this.view = view;
+		this.actions = actions;
 
 		this.view.setController(this);
+		this.view.setActions(actions);
+	}
+
+	public int getAnnee() {
+		return model.getAnnee();
+	}
+
+	public int getMois() {
+		return model.getMois();
 	}
 
 	public void init() {
@@ -27,7 +39,6 @@ public class PublicationMonthController {
 
 	private void loadPublications() {
 		List<Publication> publications = repository.getPublicationsMonth(model.getAnnee(), model.getMois());
-
 		model.setPublications(publications);
 	}
 

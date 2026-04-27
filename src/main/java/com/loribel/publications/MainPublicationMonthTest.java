@@ -1,5 +1,7 @@
 package com.loribel.publications;
 
+import com.loribel.publications.actions.PublicationActionsDemo;
+import com.loribel.publications.interfaces.PublicationActions;
 import com.loribel.publications.mock.MockPublicationMonthRepository;
 import com.loribel.publications.ui.PublicationMonthController;
 import com.loribel.publications.ui.PublicationMonthModel;
@@ -22,14 +24,16 @@ public class MainPublicationMonthTest extends Application {
 		repository.setCountForMonth(2026, 5, 4);
 		repository.setCountForMonth(2026, 6, 10);
 
+		PublicationActions actions = new PublicationActionsDemo();
+
 		PublicationMonthModel model = new PublicationMonthModel(2026, 4);
 		PublicationMonthView view = new PublicationMonthView();
-
-		PublicationMonthController controller = new PublicationMonthController(repository, model, view);
-
+		PublicationMonthController controller = new PublicationMonthController(repository, model, view, actions);
 		controller.init();
 
 		Scene scene = new Scene(view, 1200, 800);
+
+		actions.setParentWindow(scene.getWindow());
 
 		stage.setTitle("Test UI - Publications du mois");
 		stage.setScene(scene);

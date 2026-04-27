@@ -1,8 +1,8 @@
 package com.loribel.publications.bo;
 
-import java.time.Duration;
-import java.time.OffsetDateTime;
 import java.util.List;
+
+import com.loribel.publications.interfaces.SocialNetwork;
 
 public abstract class PublicationYoutubeBO extends PublicationBO {
 
@@ -21,26 +21,11 @@ public abstract class PublicationYoutubeBO extends PublicationBO {
 	// Description textuelle de la vidéo
 	private String description;
 
-	public String getPublishedDate() {
-		return publishedDate;
-	}
-
-	public void setPublishedDate(String publishedDate) {
-		this.publishedDate = publishedDate;
-	}
-
-	public String getPublishedTime() {
-		return publishedTime;
-	}
-
-	public void setPublishedTime(String publishedTime) {
-		this.publishedTime = publishedTime;
-	}
-
 	// Durée de la vidéo en s
 	private int duration;
 
 	private String publishedDate; // YYYY-MM-DD
+
 	private String publishedTime; // HH:mm:ss
 
 	// Liste des tags associés à la vidéo
@@ -48,11 +33,13 @@ public abstract class PublicationYoutubeBO extends PublicationBO {
 
 	// URL principale de la miniature (thumbnail) de la vidéo
 	private String thumbnailsUrl;
-	
+
 	// Identifiant unique de la vidéo YouTube
 	private String youtubeId;
 
 	public PublicationYoutubeBO() {
+		super();
+		setSocialNetwork(SocialNetwork.YOUTUBE);
 	}
 
 	public String getChannelId() {
@@ -75,9 +62,16 @@ public abstract class PublicationYoutubeBO extends PublicationBO {
 		return description;
 	}
 
-
 	public int getDuration() {
 		return duration;
+	}
+
+	public String getPublishedDate() {
+		return publishedDate;
+	}
+
+	public String getPublishedTime() {
+		return publishedTime;
 	}
 
 	public List<String> getTags() {
@@ -116,7 +110,13 @@ public abstract class PublicationYoutubeBO extends PublicationBO {
 		this.duration = duration;
 	}
 
+	public void setPublishedDate(String publishedDate) {
+		this.publishedDate = publishedDate;
+	}
 
+	public void setPublishedTime(String publishedTime) {
+		this.publishedTime = publishedTime;
+	}
 
 	public void setTags(List<String> tags) {
 		this.tags = tags;

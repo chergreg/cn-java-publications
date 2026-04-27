@@ -18,7 +18,8 @@ public final class PublicationMock {
 	private static final String[] STATUS = { "BROUILLON", "PLANIFIEE", "PUBLIEE" };
 
 	private static final String[] TITLES = { "Lancement produit", "Retour client", "Annonce importante",
-			"Tutoriel rapide", "Bilan mensuel", "Nouveau service", "Astuces communication", "Présentation équipe" };
+			"Tutoriel rapide", "Bilan mensuel", "Nouveau service", "Astuces communication", "Présentation équipe",
+			"Tutoriel tres tres tres tres tres tres long rapide" };
 
 	public static Publication createRandomPublication(int annee, int mois) {
 		Publication publication = createRandomType();
